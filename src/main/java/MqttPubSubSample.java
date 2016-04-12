@@ -9,9 +9,6 @@ public class MqttPubSubSample {
     public static void main(String[] args) {
 
         String topic        = "test";
-        Hoge hoge           = new Hoge();
-        hoge.id             = 10;
-        hoge.name           = "hoge";
         int qos             = 2;
         String broker       = "tcp://localhost:1883";
         String clientId     = "JavaSample";
@@ -34,6 +31,9 @@ public class MqttPubSubSample {
             sampleClient.subscribe("test");
             Thread.sleep(1000);
 
+            Hoge hoge = new Hoge();
+            hoge.id   = 10;
+            hoge.name = "hoge";
             System.out.println("Publishing message: " + hoge);
             byte[] json = mapper.writeValueAsBytes(hoge);
             MqttMessage message = new MqttMessage(json);
